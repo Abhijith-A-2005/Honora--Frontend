@@ -1,18 +1,18 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { AuthProvider } from "./components/common/useAuth";
-import { ParticleField } from "./components/common/Shared";
+import { AuthProvider } from "./src/components/common/useAuth";
+import { ParticleField } from "./src/components/common/Shared";
 
-import Navbar          from "./components/common/Navbar";
-import HomeSection     from "./components/common/HomeSection";
-import RoleSelection   from "./components/common/RoleSelection";
-import PoliceDashboard from "./components/police/PoliceDashboard";
-import CaseDetails     from "./components/police/CaseDetails";
+import Navbar          from "./src/components/common/Navbar";
+import HomeSection     from "./src/components/common/HomeSection";
+import RoleSelection   from "./src/components/common/RoleSelection";
+import PoliceDashboard from "./src/components/police/PoliceDashboard";
+import CaseDetails     from "./src/components/police/CaseDetails";
 
-import LawyerDashboardPage   from "./components/lawyer/LawyerDashboardPage";
-import LawyerCaseDetailsPage from "./components/lawyer/LawyerCaseDetailsPage";
+import LawyerDashboardPage   from "./src/components/lawyer/LawyerDashboardPage";
+import LawyerCaseDetailsPage from "./src/components/lawyer/LawyerCaseDetailsPage";
 
-import JudgeDashboardPage   from "./components/judge/JudgeDashboardPage";
-import JudgeCaseDetailsPage from "./components/judge/JudgeCaseDetailsPage";
+import JudgeDashboardPage   from "./src/components/judge/JudgeDashboardPage";
+import JudgeCaseDetailsPage from "./src/components/judge/JudgeCaseDetailsPage";
 
 import "./App.css";
 
