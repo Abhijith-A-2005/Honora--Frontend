@@ -31,7 +31,7 @@ export default function ForensicCaseDetails({ caseId, onBack }) {
   if (!caseData) return (
     <div className="dashboard view">
       <button className="back-btn" onClick={onBack}>← Back</button>
-      <p style={{ color: "var(--text-muted)", marginTop: "2rem" }}>Case not found.</p>
+      <p className="case-not-found">Case not found.</p>
     </div>
   );
 
@@ -56,7 +56,7 @@ export default function ForensicCaseDetails({ caseId, onBack }) {
     <div className="dashboard view">
       <button className="back-btn" onClick={onBack}>← Back to Cases</button>
 
-      <div style={{ animation: "fadeUp 0.45s ease both" }}>
+      <div className="fade-up">
         <p className="dash-eyebrow">Forensic Case Record</p>
         <h1 className="dash-title">{caseData.title}</h1>
         <div className="meta-grid">
@@ -96,17 +96,17 @@ export default function ForensicCaseDetails({ caseId, onBack }) {
       <div className="gold-divider" />
 
       {/* Original Evidence Section */}
-      <div style={{ marginBottom: 36 }}>
-        <p style={{ fontSize: "0.72rem", letterSpacing: "0.3em", color: "var(--gold)", fontWeight: 600, marginBottom: 10, textTransform: "uppercase" }}>
+      <div className="mb-36">
+        <p className="section-eyebrow">
           SUBMITTED EVIDENCE
         </p>
-        <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.3rem,3vw,2rem)", color: "var(--text)", fontWeight: 700, marginBottom: 20 }}>
+        <h2 className="section-title-lg">
           Case Evidence Inventory
         </h2>
       </div>
 
       {caseEvidence.length === 0 ? (
-        <p style={{ color: "var(--text-muted)", fontStyle: "italic", fontSize: "13px", marginTop: "1rem" }}>
+        <p className="no-evidence-text">
           No evidence inventory documentation available for this case.
         </p>
       ) : (
@@ -116,17 +116,17 @@ export default function ForensicCaseDetails({ caseId, onBack }) {
       <GoldenDivider />
 
       {/* Forensic Reports Section */}
-      <div style={{ marginBottom: 36 }}>
-        <p style={{ fontSize: "0.72rem", letterSpacing: "0.3em", color: "var(--gold)", fontWeight: 600, marginBottom: 10, textTransform: "uppercase" }}>
+      <div className="mb-36">
+        <p className="section-eyebrow">
           FORENSIC ANALYSIS
         </p>
-        <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.3rem,3vw,2rem)", color: "var(--text)", fontWeight: 700, marginBottom: 20 }}>
+        <h2 className="section-title-lg">
           Forensic Reports
         </h2>
       </div>
 
       {forensicReports.length === 0 ? (
-        <p style={{ color: "var(--text-muted)", fontStyle: "italic", fontSize: "13px", marginTop: "1rem" }}>
+        <p className="no-evidence-text">
           No forensic reports uploaded for this case yet.
         </p>
       ) : (

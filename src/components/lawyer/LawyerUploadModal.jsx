@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { CloseIcon, PlusIcon } from "../../assets/icons/Icons";
 
-const FORMATS = ["Video", "Photo", "Text Document", "Voice Note", "Other"];
+const FORMATS = ["Legal Brief", "Affidavit", "Motion", "Petition", "Evidence Document", "Other"];
 
-export default function UploadEvidenceModal({ caseId, onClose, onUpload }) {
-  const [form, setForm] = useState({ title: "", description: "", format: "Video", file: null, fileName: "" });
+export default function LawyerUploadModal({ caseId, onClose, onUpload, lawyerName }) {
+  const [form, setForm] = useState({ title: "", description: "", format: "Legal Brief", file: null, fileName: "" });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -25,18 +25,19 @@ export default function UploadEvidenceModal({ caseId, onClose, onUpload }) {
 
     setTimeout(() => {
       const fileUrl = form.file ? URL.createObjectURL(form.file) : null;
-      const newEvidence = {
-        id: `EV-NEW-${Date.now()}`,
+      const newDocument = {
+        id: `SD-${caseId.split('-')[2]}-${Date.now()}`,
         title: form.title.trim(),
         description: form.description.trim(),
-        format: form.format,
-        uploadedBy: "Current Officer",
+        format: form.format.toLowerCase().replace(' ', '_'),
+        uploadedBy: lawyerName,
+        lawyerName: lawyerName,
         uploadDate: new Date().toISOString().split("T")[0],
         fileUrl,
-        textContent: form.format === "Text Document" ? form.description : null,
+        textContent: form.format === "Legal Brief" || form.format === "Affidavit" || form.format === "Motion" || form.format === "Petition" ? form.description : null,
         isNew: true,
       };
-      onUpload(newEvidence);
+      onUpload(newDocument);
       setLoading(false);
       onClose();
     }, 900);
@@ -47,23 +48,23 @@ export default function UploadEvidenceModal({ caseId, onClose, onUpload }) {
       <div className="modal-glass upload-modal">
         <button className="modal-close" onClick={onClose} aria-label="Close"><CloseIcon /></button>
 
-        <div className="modal-icon welcome-gold"><PlusIcon /></div>
-        <h2 className="modal-title">Upload Evidence</h2>
+        <div className="modal-icon" style={{ color: "var(--gold)" }}><PlusIcon /></div>
+        <h2 className="modal-title">Upload Supporting Document</h2>
         <p className="modal-subtitle">Case: {caseId}</p>
 
         <form className="modal-form" onSubmit={handleSubmit}>
           <div className="input-group">
-            <label>Evidence Title</label>
-            <input type="text" placeholder="e.g. Lobby CCTV Footage" value={form.title} onChange={(e) => setForm((f) => ({ ...f, title: e.target.value }))} />
+            <label>Document Title</label>
+            <input type="text" placeholder="e.g. Defense Brief — Alibi Evidence" value={form.title} onChange={(e) => setForm((f) => ({ ...f, title: e.target.value }))} />
           </div>
 
           <div className="input-group">
             <label>Description</label>
-            <textarea placeholder="Describe this piece of evidence..." value={form.description} onChange={(e) => setForm((f) => ({ ...f, description: e.target.value }))} />
+            <textarea placeholder="Describe this supporting document..." value={form.description} onChange={(e) => setForm((f) => ({ ...f, description: e.target.value }))} />
           </div>
 
           <div className="input-group">
-            <label>Format</label>
+            <label>Document Type</label>
             <select value={form.format} onChange={(e) => setForm((f) => ({ ...f, format: e.target.value }))}>
               {FORMATS.map((f) => <option key={f} value={f}>{f}</option>)}
             </select>
@@ -72,10 +73,10 @@ export default function UploadEvidenceModal({ caseId, onClose, onUpload }) {
           <div className="input-group">
             <label>File Upload (optional)</label>
             <div className="file-input-wrapper">
-              <input type="file" onChange={handleFile} accept="video/*,image/*,audio/*,.pdf,.txt,.doc,.docx" />
+              <input type="file" onChange={handleFile} accept=".pdf,.doc,.docx,.txt,.rtf" />
               <div className="file-input-display">
-                <div className="file-input-icon">📂</div>
-                <div className="file-input-text">Click or drag to upload file</div>
+                <div className="file-input-icon">📄</div>
+                <div className="file-input-text">Click or drag to upload document</div>
                 {form.fileName && <div className="file-input-name">{form.fileName}</div>}
               </div>
             </div>
@@ -83,15 +84,15 @@ export default function UploadEvidenceModal({ caseId, onClose, onUpload }) {
 
           {error && <p className="modal-error">{error}</p>}
 
-          <div className="modal-btn-row">
-            <button type="button" className="btn-outline" onClick={onClose}>Cancel</button>
-            <button type="submit" className={`btn-gold${loading ? " loading" : ""}`}>
-              {loading ? <span className="loader" /> : "Submit Evidence"}
+          <div style={{ display: "flex", gap: 12 }}>
+            <button type="button" className="btn-outline" style={{ flex: 1 }} onClick={onClose}>Cancel</button>
+            <button type="submit" className={`btn-gold${loading ? " loading" : ""}`} style={{ flex: 1 }}>
+              {loading ? <span className="loader" /> : "Submit Document"}
             </button>
           </div>
         </form>
 
-        <p className="modal-notice">🔒 Evidence is cryptographically hashed and logged to chain of custody</p>
+        <p className="modal-notice">⚖️ Documents are digitally signed and timestamped for court admissibility</p>
       </div>
     </div>
   );

@@ -24,7 +24,7 @@ export default function CaseCard({ caseData, delay = 0 }) {
   };
 
   return (
-    <div className="case-card" style={{ animationDelay: `${delay}s` }}>
+    <div className={`case-card card-delay-${delay}`}>
       <div className="cc-glow" />
       <div className="cc-id">{caseData.id}</div>
       <div className="cc-main">

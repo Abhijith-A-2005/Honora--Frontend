@@ -5,8 +5,7 @@ import { getStatusBadgeClass } from "../../utils/helpers";
 export default function JudgeCaseCard({ c, onView, delay }) {
   return (
     <div
-      className="judge-case-card"
-      style={{ animationDelay:`${delay}s` }}
+      className={`judge-case-card card-delay-${delay}`}
       onClick={() => onView(c.id)}
     >
       <div>

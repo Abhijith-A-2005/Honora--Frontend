@@ -4,13 +4,19 @@ import { useAuth } from "../common/useAuth";
 import { FORENSIC_CASES } from "../../data/mockCases";
 import { FORENSIC_PROFILES } from "../../data/mockUsers";
 import ForensicCaseCard from "./ForensicCaseCard";
+import { useState } from "react";
 
 export default function ForensicDashboard({ onViewCase, onLogout }) {
   const { user } = useAuth();
   const profile = FORENSIC_PROFILES[user?.username];
+  const [searchQuery, setSearchQuery] = useState('');
 
   // Filter cases assigned to this forensic analyst
   const myCases = FORENSIC_CASES.filter((c) => c.assignedForensicId === profile?.id);
+  const filteredCases = myCases.filter(c => 
+    c.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+    c.description.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const inProgressCount = myCases.filter((c) => c.status === "In Progress").length;
   const pendingCount = myCases.filter((c) => c.status === "Pending").length;
@@ -64,13 +70,44 @@ export default function ForensicDashboard({ onViewCase, onLogout }) {
         </h2>
       </div>
 
+      <div style={{ marginBottom: 20 }}>
+        <input
+          type="text"
+          placeholder="Search cases..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          style={{
+            width: '100%',
+            padding: '12px 16px',
+            border: '1px solid var(--border)',
+            borderRadius: '6px',
+            backgroundColor: 'rgba(255,255,255,0.03)',
+            color: 'var(--text)',
+            fontSize: '0.95rem',
+            fontFamily: 'var(--font-body)',
+            outline: 'none',
+            transition: 'all 0.3s var(--ease)'
+          }}
+          onFocus={(e) => {
+            e.target.style.borderColor = 'var(--gold-dim)';
+            e.target.style.backgroundColor = 'rgba(212,175,55,0.04)';
+            e.target.style.boxShadow = '0 0 0 3px rgba(212,175,55,0.08)';
+          }}
+          onBlur={(e) => {
+            e.target.style.borderColor = 'var(--border)';
+            e.target.style.backgroundColor = 'rgba(255,255,255,0.03)';
+            e.target.style.boxShadow = 'none';
+          }}
+        />
+      </div>
+
       <div className="cases-grid">
-        {myCases.length === 0 ? (
+        {filteredCases.length === 0 ? (
           <p style={{ color: "var(--text-muted)", fontStyle: "italic", fontSize: "13px" }}>
-            No cases currently assigned to you.
+            {searchQuery ? 'No cases match your search.' : 'No cases currently assigned to you.'}
           </p>
         ) : (
-          myCases.map((c, i) => (
+          filteredCases.map((c, i) => (
             <ForensicCaseCard key={c.id} caseData={c} delay={i * 0.07} />
           ))
         )}

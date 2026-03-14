@@ -2,38 +2,38 @@
 /* Forensic Department - Analysis Workbench Styling */
 
 .dashboard-page {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  padding: 3rem 2rem;
+  min-height: 100vh; 
+  padding: 100px 40px 60px;
+  background: linear-gradient(180deg,#0a0a0a 0%,#0d0b06 100%);
+  position: relative; 
+  z-index: 1;
   max-width: 1400px;
   margin: 0 auto;
 }
 
-.dashboard-header {
+.dashboard-header { 
+  margin-bottom: 48px; 
   animation: fadeUp 0.5s ease;
 }
-
-.dashboard-dept {
-  font-size: 0.72rem;
-  letter-spacing: 0.3em;
-  color: var(--gold);
-  font-weight: 600;
-  margin-bottom: 0.75rem;
+.dashboard-dept { 
+  font-size: 0.72rem; 
+  letter-spacing: 0.3em; 
+  color: var(--gold); 
+  font-weight: 600; 
+  margin-bottom: 12px; 
   text-transform: uppercase;
 }
-
-.dashboard-title {
-  font-family: var(--font-display);
-  font-size: clamp(1.8rem, 4vw, 3rem);
-  color: var(--text);
-  font-weight: 700;
-  margin-bottom: 0.5rem;
+.dashboard-title { 
+  font-family: var(--font-display); 
+  font-size: clamp(1.8rem,4vw,3rem); 
+  color: var(--text); 
+  font-weight: 700; 
+  margin-bottom: 10px;
 }
-
-.dashboard-meta {
-  color: var(--text-muted);
-  font-size: 0.9rem;
+.dashboard-meta { 
+  font-size: 0.85rem; 
+  color: rgba(240,234,216,0.6); 
+  letter-spacing: 0.05em;
 }
 
 .dashboard-stats {

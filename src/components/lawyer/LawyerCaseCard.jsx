@@ -5,8 +5,7 @@ import { getStatusBadgeClass, getTypeBadgeClass } from "../../utils/helpers";
 export default function LawyerCaseCard({ c, onView, delay }) {
   return (
     <div
-      className="lawyer-case-card"
-      style={{ animationDelay:`${delay}s` }}
+      className={`lawyer-case-card card-delay-${delay}`}
       onClick={() => onView(c.id)}
     >
       <div className="case-card-main">
@@ -19,8 +18,7 @@ export default function LawyerCaseCard({ c, onView, delay }) {
       <div>
         <div className="case-date">📅 {c.courtDate}</div>
         <button
-          className="btn-gold ev-view-btn"
-          style={{ marginTop:"0.5rem" }}
+          className="btn-gold ev-view-btn mt-2"
           onClick={(e) => { e.stopPropagation(); onView(c.id); }}
         >
           View →

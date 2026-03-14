@@ -8,19 +8,58 @@
 @keyframes jBtnGlow  { 0%,100% { box-shadow: 0 0 10px rgba(212,175,55,0.25); } 50% { box-shadow: 0 0 22px rgba(212,175,55,0.55); } }
 @keyframes jShimmer  { 0%,100% { opacity: 0.3; } 50% { opacity: 0.7; } }
 
-.judge-dashboard { min-height: 100vh; background: radial-gradient(ellipse 50% 35% at 50% 0%, rgba(60,45,10,0.12) 0%, transparent 60%), #0c0b09; padding: 2.5rem clamp(1.2rem, 5vw, 3.5rem) 5rem; }
+.judge-dashboard { 
+  min-height: 100vh; 
+  padding: 100px 40px 60px;
+  background: linear-gradient(180deg,#0a0a0a 0%,#0d0b06 100%);
+  position: relative; 
+  z-index: 1;
+  max-width: 1400px;
+  margin: 0 auto;
+}
 
-.judge-topbar { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem; animation: jFadeUp 0.5s ease both; }
-.judge-eyebrow { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: #D4AF37; opacity: 0.6; margin-bottom: 0.4rem; font-family: 'Josefin Sans', sans-serif; }
-.judge-title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; background: linear-gradient(135deg, #f5d982, #D4AF37, #b8962a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.judge-subtitle { font-size: 11px; color: rgba(240,234,216,0.4); letter-spacing: 0.12em; margin-top: 0.3rem; font-family: 'Josefin Sans', sans-serif; }
+.judge-topbar { 
+  margin-bottom: 48px; 
+  animation: jFadeUp 0.5s ease both;
+}
+.judge-eyebrow { 
+  font-size: 0.72rem; 
+  letter-spacing: 0.3em; 
+  color: #D4AF37; 
+  font-weight: 600; 
+  margin-bottom: 12px; 
+  text-transform: uppercase; 
+  font-family: 'Josefin Sans', sans-serif;
+}
+.judge-title { 
+  font-family: 'Cormorant Garamond', Georgia, serif; 
+  font-size: clamp(1.8rem,4vw,3rem); 
+  font-weight: 700; 
+  background: linear-gradient(135deg, #f5d982, #D4AF37, #b8962a); 
+  -webkit-background-clip: text; 
+  -webkit-text-fill-color: transparent; 
+  background-clip: text; 
+  margin-bottom: 10px;
+}
+.judge-subtitle { 
+  font-size: 0.85rem; 
+  color: rgba(240,234,216,0.6); 
+  letter-spacing: 0.05em; 
+  margin-top: 0.3rem; 
+  font-family: 'Josefin Sans', sans-serif;
+}
 
 .judge-logout-btn { background: none; border: 1px solid rgba(120,75,30,0.35); color: rgba(240,234,216,0.45); font-family: 'Josefin Sans', sans-serif; font-size: 11px; letter-spacing: 0.12em; padding: 0.55rem 1.2rem; border-radius: 7px; cursor: pointer; transition: all 0.2s ease; white-space: nowrap; }
 .judge-logout-btn:hover { border-color: rgba(212,175,55,0.4); color: #D4AF37; }
 
 .judge-divider { height: 1px; background: linear-gradient(90deg, transparent, #D4AF37, transparent); opacity: 0.45; margin: 1.4rem 0; animation: jShimmer 4s ease-in-out infinite; }
 
-.judge-cases-list { display: flex; flex-direction: column; gap: 0.9rem; margin-top: 0.5rem; }
+.judge-cases-list { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 16px; 
+  margin-top: 0.5rem;
+}
 
 .judge-case-card { text-align: left; }
 .judge-case-card { background: linear-gradient(135deg, rgba(26,16,3,0.94), rgba(20,12,2,0.97)); border: 1px solid rgba(120,75,30,0.28); border-radius: 12px; padding: 1.4rem 1.8rem; display: grid; grid-template-columns: 1fr auto auto auto; align-items: center; gap: 1.4rem; cursor: pointer; transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), border-color 0.25s, box-shadow 0.25s; animation: jSlideIn 0.5s cubic-bezier(0.16,1,0.3,1) both; }

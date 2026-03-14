@@ -13,8 +13,7 @@ export default function ForensicCaseCard({ caseData, delay }) {
 
   return (
     <div
-      className="case-card"
-      style={{ animationDelay: `${delay}s` }}
+      className={`case-card card-delay-${delay}`}
       onClick={() => navigate(`/dashboard/forensic/case/${encodeURIComponent(caseData.id)}`)}
     >
       <div className="case-card-ripple" />

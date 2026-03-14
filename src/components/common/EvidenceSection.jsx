@@ -4,9 +4,29 @@
 import { useState } from "react";
 import EvidenceModal from "./EvidenceModal";
 
-const FORMAT_ORDER  = ["video", "photo", "text", "voice"];
-const FORMAT_LABELS = { video:"Video Evidence", photo:"Photo Evidence", text:"Text Documents", voice:"Voice Notes" };
-const FORMAT_ICONS  = { video:"▶", photo:"◉", text:"≡", voice:"♪" };
+const FORMAT_ORDER  = ["video", "photo", "text", "voice", "legal_brief", "affidavit", "motion", "petition", "evidence_document"];
+const FORMAT_LABELS = { 
+  video:"Video Evidence", 
+  photo:"Photo Evidence", 
+  text:"Text Documents", 
+  voice:"Voice Notes",
+  legal_brief: "Legal Briefs",
+  affidavit: "Affidavits", 
+  motion: "Motions",
+  petition: "Petitions",
+  evidence_document: "Evidence Documents"
+};
+const FORMAT_ICONS  = { 
+  video:"▶", 
+  photo:"◉", 
+  text:"≡", 
+  voice:"♪",
+  legal_brief: "⚖️",
+  affidavit: "📝",
+  motion: "📄",
+  petition: "📋",
+  evidence_document: "📑"
+};
 
 function EvidenceCard({ ev, onView, delay }) {
   return (
@@ -17,7 +37,7 @@ function EvidenceCard({ ev, onView, delay }) {
           <div className="ev-title">{ev.title}</div>
           <div className="ev-desc">{ev.description}</div>
           <div className="ev-meta">
-            <span>By: {ev.uploadedBy}</span>
+            <span>By: {ev.lawyerName || ev.uploadedBy}</span>
             <span>{ev.uploadDate}</span>
           </div>
         </div>

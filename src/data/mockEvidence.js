@@ -556,3 +556,127 @@ ANALYSIS STATUS: Pending chemical composition testing`,
   ],
   "FRN-2026-004": [],
 };
+
+// ─── LAWYER SUPPORTING DOCUMENTS ─────────────────────────────────────────────
+
+export const LAWYER_SUPPORTING_DOCUMENTS = {
+  "LGL-2026-001": [
+    {
+      id: "SD-001-001",
+      title: "Defense Brief — Alibi Evidence",
+      description: "Comprehensive legal brief outlining defendant's alibi and supporting documentation.",
+      format: "text",
+      uploadedBy: "Advocate Rajesh Kumar",
+      lawyerName: "Advocate Rajesh Kumar",
+      uploadDate: "2026-02-15",
+      fileUrl: null,
+      textContent: `DEFENSE BRIEF — ALIBI EVIDENCE
+Case: State vs. Aryan Mehta (LGL-2026-001)
+
+I. INTRODUCTION
+The defendant, Mr. Aryan Mehta, hereby submits this brief in support of his alibi defense.
+
+II. ALIBI TESTIMONY
+On the night of January 12, 2026, the defendant was attending a family wedding reception at the Grand Ballroom, Mumbai, from 8:00 PM until 2:00 AM.
+
+III. SUPPORTING EVIDENCE
+- Wedding invitation card (Exhibit A)
+- Photographs from the event (Exhibit B)
+- Witness statements from 12 attendees (Exhibit C)
+- Hotel registration records (Exhibit D)
+
+IV. CONCLUSION
+The prosecution's timeline is fundamentally flawed. The defendant could not have been present at the crime scene.`,
+      isNew: false,
+    },
+    {
+      id: "SD-001-002",
+      title: "Character Reference Letters",
+      description: "Collection of character references from community leaders and employers.",
+      format: "text",
+      uploadedBy: "Advocate Rajesh Kumar",
+      lawyerName: "Advocate Rajesh Kumar",
+      uploadDate: "2026-02-18",
+      fileUrl: null,
+      textContent: `CHARACTER REFERENCES — ARYAN MEHTA
+
+1. EMPLOYER REFERENCE
+From: Mr. Suresh Patel, CEO, TechCorp India
+"To whom it may concern: Mr. Aryan Mehta has been employed with our company for 8 years. He is a model employee with impeccable character."
+
+2. COMMUNITY LEADER REFERENCE
+From: Dr. Priya Sharma, President, Local Residents Association
+"Mr. Mehta has been a valuable member of our community for over a decade. His character is beyond reproach."
+
+3. EDUCATIONAL REFERENCE
+From: Prof. Rajan Gupta, IIT Mumbai
+"Aryan was an outstanding student during his time at IIT. His integrity and dedication were exemplary."`,
+      isNew: false,
+    },
+  ],
+  "LGL-2026-002": [
+    {
+      id: "SD-002-001",
+      title: "Motion to Suppress Evidence",
+      description: "Legal motion challenging the admissibility of digital evidence due to chain of custody issues.",
+      format: "text",
+      uploadedBy: "Advocate Meera Singh",
+      lawyerName: "Advocate Meera Singh",
+      uploadDate: "2026-03-01",
+      fileUrl: null,
+      textContent: `MOTION TO SUPPRESS DIGITAL EVIDENCE
+Case: People vs. Nisha Verma (LGL-2026-002)
+
+I. STATEMENT OF FACTS
+The digital evidence presented by the prosecution was obtained through unauthorized access to the defendant's personal devices.
+
+II. LEGAL ARGUMENTS
+1. Violation of Article 20(3) of the Constitution of India
+2. Breach of Section 164 CrPC requirements
+3. Chain of custody irregularities
+
+III. RELIEF SOUGHT
+This Honorable Court may be pleased to:
+a) Suppress all digital evidence obtained illegally
+b) Dismiss charges based on such evidence
+c) Grant costs of this motion`,
+      isNew: false,
+    },
+  ],
+  "LGL-2026-003": [],
+  "LGL-2026-004": [
+    {
+      id: "SD-004-001",
+      title: "Constitutional Challenge Brief",
+      description: "Detailed constitutional law brief challenging the statutory framework under Articles 14, 19, and 21.",
+      format: "text",
+      uploadedBy: "Sr. Advocate Karan Pillai",
+      lawyerName: "Sr. Advocate Karan Pillai",
+      uploadDate: "2026-03-10",
+      fileUrl: null,
+      textContent: `CONSTITUTIONAL CHALLENGE BRIEF
+Case: Republic vs. Devika Rao (LGL-2026-004)
+
+I. STATEMENT OF JURISDICTION
+This Honorable Supreme Court has jurisdiction under Article 32 of the Constitution.
+
+II. FACTUAL BACKGROUND
+The petitioner challenges the constitutionality of Section 12 of the [Act Name] which permits [challenged action].
+
+III. CONSTITUTIONAL VIOLATIONS
+
+A. ARTICLE 14 — RIGHT TO EQUALITY
+The provision creates an arbitrary classification without reasonable nexus to the stated objective.
+
+B. ARTICLE 19 — RIGHT TO FREEDOM
+The provision imposes unreasonable restrictions on the petitioner's fundamental rights.
+
+C. ARTICLE 21 — RIGHT TO LIFE AND PERSONAL LIBERTY
+The provision violates the right to privacy and personal autonomy.
+
+IV. RELIEF SOUGHT
+Declare Section 12 unconstitutional and quash all proceedings based thereon.`,
+      isNew: false,
+    },
+  ],
+};

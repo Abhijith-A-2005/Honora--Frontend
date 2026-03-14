@@ -2,7 +2,7 @@
 
 import { useAuth } from "../common/useAuth";
 import { JUDGE_CASES, FORENSIC_CASES }    from "../../data/mockCases";
-import { JUDGE_EVIDENCE, FORENSIC_REPORTS } from "../../data/mockEvidence";
+import { JUDGE_EVIDENCE, FORENSIC_REPORTS, LAWYER_SUPPORTING_DOCUMENTS } from "../../data/mockEvidence";
 import { JUDGE_PROFILES } from "../../data/mockUsers";
 import { isJudgeAuthorized } from "../../utils/filters";
 import { getStatusBadgeClass } from "../../utils/helpers";
@@ -25,7 +25,18 @@ export default function JudgeCaseDetails({ caseId, onBack }) {
     return [];
   };
 
+  // Get lawyer supporting documents for this case
+  const getLawyerSupportingDocuments = () => {
+    if (!caseData) return [];
+    
+    // Convert judge case ID to lawyer case ID (CRT-2026-001 -> LGL-2026-001)
+    const lawyerCaseId = caseData.id.replace('CRT', 'LGL');
+    
+    return LAWYER_SUPPORTING_DOCUMENTS[lawyerCaseId] || [];
+  };
+
   const forensicReports = getRelatedForensicReports();
+  const lawyerDocuments = getLawyerSupportingDocuments();
 
   if (!caseData) return (
     <div className="judge-dashboard">
@@ -102,6 +113,21 @@ export default function JudgeCaseDetails({ caseId, onBack }) {
             </h2>
           </div>
           <EvidenceSection evidence={forensicReports} caseId={caseId} />
+        </>
+      )}
+
+      {lawyerDocuments.length > 0 && (
+        <>
+          <div className="judge-divider" />
+          <div style={{ marginBottom: 36 }}>
+            <p style={{ fontSize: "0.72rem", letterSpacing: "0.3em", color: "#D4AF37", fontWeight: 600, marginBottom: 10, textTransform: "uppercase", fontFamily: "'Josefin Sans',sans-serif" }}>
+              LAWYER SUBMISSIONS
+            </p>
+            <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "clamp(1.3rem,3vw,2rem)", color: "#f0ead8", fontWeight: 700 }}>
+              Supporting Documents
+            </h2>
+          </div>
+          <EvidenceSection evidence={lawyerDocuments} caseId={caseId} />
         </>
       )}
     </div>

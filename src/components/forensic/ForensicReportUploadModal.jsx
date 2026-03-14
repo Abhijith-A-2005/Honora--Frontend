@@ -65,7 +65,7 @@ Analyst: Current Analyst`,
       <div className="modal-glass upload-modal">
         <button className="modal-close" onClick={onClose} aria-label="Close"><CloseIcon /></button>
 
-        <div className="modal-icon" style={{ color: "var(--gold)" }}><PlusIcon /></div>
+        <div className="modal-icon welcome-gold"><PlusIcon /></div>
         <h2 className="modal-title">Upload Forensic Report</h2>
         <p className="modal-subtitle">Case: {caseId}</p>
 
@@ -111,9 +111,9 @@ Analyst: Current Analyst`,
 
           {error && <p className="modal-error">{error}</p>}
 
-          <div style={{ display: "flex", gap: 12 }}>
-            <button type="button" className="btn-outline" style={{ flex: 1 }} onClick={onClose}>Cancel</button>
-            <button type="submit" className={`btn-gold${loading ? " loading" : ""}`} style={{ flex: 1 }}>
+          <div className="modal-btn-row">
+            <button type="button" className="btn-outline" onClick={onClose}>Cancel</button>
+            <button type="submit" className={`btn-gold${loading ? " loading" : ""}`}>
               {loading ? <span className="loader" /> : "Submit Report"}
             </button>
           </div>

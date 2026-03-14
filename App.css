@@ -277,18 +277,20 @@ body {
 /* ─── LOGIN MODAL ─────────────────────────────────────────────────────────── */
 .modal-overlay {
   position: fixed; inset: 0; z-index: 1000;
-  background: rgba(0,0,0,0.75); backdrop-filter: blur(14px);
-  display: flex; align-items: center; justify-content: center; padding: 24px;
+  background: rgba(0,0,0,0.85); backdrop-filter: blur(16px);
+  display: flex; align-items: center; justify-content: center; padding: 20px;
   animation: fade-in 0.3s var(--ease) both;
 }
 .modal-glass {
-  position: relative; width: 100%; max-width: 440px;
+  position: relative; width: 100%; max-width: 800px;
   background: linear-gradient(145deg,rgba(28,16,8,0.97) 0%,rgba(18,12,4,0.97) 100%);
-  border: 1px solid var(--border-strong); border-radius: 16px;
-  padding: 48px 40px 40px;
-  display: flex; flex-direction: column; align-items: center; gap: 20px;
-  box-shadow: 0 40px 80px rgba(0,0,0,0.8),inset 0 1px 0 rgba(212,175,55,0.1);
+  border: 1px solid var(--border-strong); border-radius: 20px;
+  padding: 60px 50px 50px;
+  display: flex; flex-direction: column; align-items: center; gap: 24px;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.9),inset 0 1px 0 rgba(212,175,55,0.1);
   animation: modal-in 0.4s var(--ease-bounce) both;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 @keyframes modal-in { from { opacity:0; transform:scale(0.9) translateY(20px); } to { opacity:1; transform:scale(1) translateY(0); } }
 .modal-close {
@@ -313,7 +315,12 @@ body {
   outline: none; transition: all 0.3s var(--ease); width: 100%;
   appearance: none; -webkit-appearance: none;
 }
-.input-group textarea { resize: vertical; min-height: 90px; }
+.input-group textarea { 
+  resize: vertical; 
+  min-height: 120px; 
+  font-family: 'Courier New', monospace;
+  line-height: 1.6;
+}
 .input-group select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a07820' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; background-size: 16px; padding-right: 36px; }
 .input-group select option { background: #1c1008; color: var(--text); }
 .input-group input::placeholder,

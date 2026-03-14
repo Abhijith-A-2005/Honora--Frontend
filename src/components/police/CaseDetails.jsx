@@ -67,11 +67,11 @@ export default function CaseDetails() {
         </button>
 
         {/* Case Header */}
-        <div style={{ marginBottom: 32 }}>
-          <p style={{ fontSize: "0.72rem", letterSpacing: "0.3em", color: "var(--gold)", fontWeight: 600, marginBottom: 10, textTransform: "uppercase" }}>
+        <div className="mb-32">
+          <p className="section-eyebrow">
             ⊙ Case File · {caseData.id}
           </p>
-          <h1 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.6rem,4vw,2.8rem)", color: "var(--text)", fontWeight: 700, marginBottom: 12 }}>
+          <h1 className="section-title">
             {caseData.title}
           </h1>
           <span className={`cc-status ${STATUS_CLASS[caseData.status] || "status-open"}`}>
@@ -113,14 +113,14 @@ export default function CaseDetails() {
         </div>
 
         <GoldenDivider />
-        <div style={{ marginBottom: 40 }} />
+        <div className="mb-40" />
 
         {/* Evidence heading */}
-        <div style={{ marginBottom: 36 }}>
-          <p style={{ fontSize: "0.72rem", letterSpacing: "0.3em", color: "var(--gold)", fontWeight: 600, marginBottom: 10, textTransform: "uppercase" }}>
+        <div className="mb-36">
+          <p className="section-eyebrow">
             DIGITAL EVIDENCE VAULT
           </p>
-          <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.3rem,3vw,2rem)", color: "var(--text)", fontWeight: 700 }}>
+          <h2 className="section-title-lg">
             Evidence Repository
           </h2>
         </div>
@@ -159,11 +159,11 @@ export default function CaseDetails() {
         {forensicReports.length > 0 && (
           <>
             <GoldenDivider />
-            <div style={{ marginBottom: 36 }}>
-              <p style={{ fontSize: "0.72rem", letterSpacing: "0.3em", color: "var(--gold)", fontWeight: 600, marginBottom: 10, textTransform: "uppercase" }}>
+            <div className="mb-36">
+              <p className="section-eyebrow">
                 FORENSIC ANALYSIS
               </p>
-              <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.3rem,3vw,2rem)", color: "var(--text)", fontWeight: 700 }}>
+              <h2 className="section-title-lg">
                 Forensic Reports
               </h2>
             </div>

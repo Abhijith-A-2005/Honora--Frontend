@@ -2,17 +2,21 @@
 
 import { useAuth } from "../common/useAuth";
 import { LAWYER_CASES, FORENSIC_CASES }    from "../../data/mockCases";
-import { LAWYER_EVIDENCE, FORENSIC_REPORTS } from "../../data/mockEvidence";
+import { LAWYER_EVIDENCE, FORENSIC_REPORTS, LAWYER_SUPPORTING_DOCUMENTS } from "../../data/mockEvidence";
 import { LAWYER_PROFILES } from "../../data/mockUsers";
 import { isLawyerAuthorized } from "../../utils/filters";
 import { getStatusBadgeClass, getTypeBadgeClass } from "../../utils/helpers";
 import EvidenceSection from "../common/EvidenceSection";
+import LawyerUploadModal from "./LawyerUploadModal";
+import { useState } from "react";
 
 export default function LawyerCaseDetails({ caseId, onBack }) {
   const { user } = useAuth();
   const profile  = LAWYER_PROFILES[user?.username];
   const caseData = LAWYER_CASES.find(c => c.id === caseId);
   const evidence = LAWYER_EVIDENCE[caseId] || [];
+  const [supportingDocuments, setSupportingDocuments] = useState(LAWYER_SUPPORTING_DOCUMENTS[caseId] || []);
+  const [showUploadModal, setShowUploadModal] = useState(false);
 
   // Find related forensic case and reports by matching case title
   const getRelatedForensicReports = () => {
@@ -94,6 +98,36 @@ export default function LawyerCaseDetails({ caseId, onBack }) {
         <EvidenceSection evidence={evidence} caseId={caseId} />
       )}
 
+      <div className="gold-divider" />
+
+      <div style={{ marginBottom: 36 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
+          <div>
+            <p style={{ fontSize: "0.72rem", letterSpacing: "0.3em", color: "var(--gold)", fontWeight: 600, marginBottom: 10, textTransform: "uppercase" }}>
+              SUPPORTING DOCUMENTS
+            </p>
+            <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.3rem,3vw,2rem)", color: "var(--text)", fontWeight: 700 }}>
+              Trial Preparation Materials
+            </h2>
+          </div>
+          <button
+            className="btn-gold"
+            onClick={() => setShowUploadModal(true)}
+            style={{ padding: "8px 16px", fontSize: "14px" }}
+          >
+            + Upload Document
+          </button>
+        </div>
+
+        {supportingDocuments.length === 0 ? (
+          <p style={{ color:"var(--text-muted)", fontStyle:"italic", fontSize:"13px" }}>
+            No supporting documents uploaded yet.
+          </p>
+        ) : (
+          <EvidenceSection evidence={supportingDocuments} caseId={caseId} />
+        )}
+      </div>
+
       {forensicReports.length > 0 && (
         <>
           <div className="gold-divider" />
@@ -107,6 +141,19 @@ export default function LawyerCaseDetails({ caseId, onBack }) {
           </div>
           <EvidenceSection evidence={forensicReports} caseId={caseId} />
         </>
+      )}
+
+      {showUploadModal && (
+        <LawyerUploadModal
+          caseId={caseId}
+          onClose={() => setShowUploadModal(false)}
+          onUpload={(newDoc) => {
+            setSupportingDocuments(prev => [...prev, newDoc]);
+            // In a real app, this would be sent to the backend
+            LAWYER_SUPPORTING_DOCUMENTS[caseId] = [...supportingDocuments, newDoc];
+          }}
+          lawyerName={profile?.name || "Unknown Lawyer"}
+        />
       )}
     </div>
   );

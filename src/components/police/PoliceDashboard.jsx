@@ -12,6 +12,7 @@ export default function PoliceDashboard() {
   const { user } = useAuth();
   const navigate = useNavigate();
   const [showNewCase, setShowNewCase] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     if (!user) navigate("/role");
@@ -22,6 +23,13 @@ export default function PoliceDashboard() {
   const openCount        = MOCK_CASES.filter((c) => c.status === "Open").length;
   const investigateCount = MOCK_CASES.filter((c) => c.status === "Under Investigation").length;
   const closedCount      = MOCK_CASES.filter((c) => c.status === "Closed").length;
+
+  const filteredCases = MOCK_CASES.filter(c => 
+    c.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+    c.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    c.officer.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    c.department.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <main className="dashboard-page">
@@ -63,10 +71,47 @@ export default function PoliceDashboard() {
       <GoldenDivider />
       <div style={{ marginBottom: 28 }} />
 
+      <div style={{ marginBottom: 20 }}>
+        <input
+          type="text"
+          placeholder="Search cases..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          style={{
+            width: '100%',
+            padding: '12px 16px',
+            border: '1px solid var(--border)',
+            borderRadius: '6px',
+            backgroundColor: 'rgba(255,255,255,0.03)',
+            color: 'var(--text)',
+            fontSize: '0.95rem',
+            fontFamily: 'var(--font-body)',
+            outline: 'none',
+            transition: 'all 0.3s var(--ease)'
+          }}
+          onFocus={(e) => {
+            e.target.style.borderColor = 'var(--gold-dim)';
+            e.target.style.backgroundColor = 'rgba(212,175,55,0.04)';
+            e.target.style.boxShadow = '0 0 0 3px rgba(212,175,55,0.08)';
+          }}
+          onBlur={(e) => {
+            e.target.style.borderColor = 'var(--border)';
+            e.target.style.backgroundColor = 'rgba(255,255,255,0.03)';
+            e.target.style.boxShadow = 'none';
+          }}
+        />
+      </div>
+
       <div className="cases-grid">
-        {MOCK_CASES.map((c, i) => (
-          <CaseCard key={c.id} caseData={c} delay={i * 0.07} />
-        ))}
+        {filteredCases.length === 0 ? (
+          <p style={{ color: "var(--text-muted)", fontStyle: "italic", fontSize: "13px" }}>
+            {searchQuery ? 'No cases match your search.' : 'No cases available.'}
+          </p>
+        ) : (
+          filteredCases.map((c, i) => (
+            <CaseCard key={c.id} caseData={c} delay={i * 0.07} />
+          ))
+        )}
       </div>
       {showNewCase && (
         <NewCaseModal
