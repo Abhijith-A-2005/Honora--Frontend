@@ -94,7 +94,7 @@ export default function CaseDetails() {
             <span className="meta-value">{caseData.badge}</span>
           </div>
           <div className="meta-item">
-            <span className="meta-label">Department</span>
+            <span className="meta-label">Case Type</span>
             <span className="meta-value">{caseData.department}</span>
           </div>
           <div className="meta-item">

@@ -18,7 +18,7 @@ export default function NewCaseModal({ onClose, onCreate }) {
     e.preventDefault();
     if (!form.title.trim()) { setError("Title is required."); return; }
     if (!form.officer.trim()) { setError("Officer name is required."); return; }
-    if (!form.department.trim()) { setError("Department is required."); return; }
+    if (!form.department.trim()) { setError("Case type is required."); return; }
     setError("");
     setLoading(true);
 
@@ -67,10 +67,10 @@ export default function NewCaseModal({ onClose, onCreate }) {
             />
           </div>
           <div className="input-group">
-            <label>Department</label>
+            <label>Case Type</label>
             <input
               type="text"
-              placeholder="Unit or division"
+              placeholder="Type of case"
               value={form.department}
               onChange={(e) => setForm((f) => ({ ...f, department: e.target.value }))}
             />
